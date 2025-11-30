@@ -24,7 +24,7 @@ public class MemberMapperTest {
 			member.setMemberId("test2");
 			member.setPassword("test2");
 			member.setName("test2");
-			member.setEmail("test@daum.com");
+			member.setEmail("test@naver.com");
 			
 			memberMapper.memberJoin(member);
 	}
