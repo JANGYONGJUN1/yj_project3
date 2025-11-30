@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.KakaoMapper">
+
+	<select id="findByKakaoId" parameterType="Long" resultType="com.board.vo.KakaoDTO">
+		select kakao_number, kakao_id, kakao_name, kakao_email
+		from KAKAO_TABLE
+		where kakao_id = #{kakao_id}
+	</select>
+
+	<insert id="save" parameterType="com.board.vo.KakaoDTO" useGeneratedKeys="true" keyProperty="k_number">
+		INSERT INTO KAKAO_TABLE 
+		(
+            kakao_id, 
+            kakao_name, 
+            kakao_email, 
+            reg_date
+        ) VALUES (
+            <!-- ⭐️ 오류 수정: 파라미터는 쉼표로 구분하지 않고 각각 #{필드명} 형식으로 작성해야 합니다. ⭐️ -->
+            #{kakaoId}, 
+            #{kakaoName}, 
+            #{kakaoEmail}, 
+            SYSDATE
+        )
+	</insert>
+	
+</mapper>

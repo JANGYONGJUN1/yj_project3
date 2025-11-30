@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.ProductMapper">
+
+	<sql id="productOrderBy"> order by product_key ASC </sql>
+
+	<select id ="getProductAll" parameterType ="java.lang.Integer" resultType="com.board.vo.ProductVO">
+		select 
+			product_key  as productKey,
+	        product_name as productName,
+	        content      as content,
+	        img1         as img1,
+	        views        as views
+		from product
+		<where>
+			<if test="category != null">
+				product_category = #{category}
+			</if>
+		</where>
+		<include refid="productOrderBy"></include>
+	</select>
+	
+	<select id ="getSearchList" parameterType ="java.util.Map" resultType="com.board.vo.ProductVO">
+		select 
+			product_key  as productKey,
+	        product_name as productName,
+	        content      as content,
+	        img1         as img1,
+	        views        as views
+		from product
+		<where>
+			<if test="category != null">
+				product_category = #{category}
+			</if>
+			<if test="keyword != null and keyword !='' ">
+				product_name like '%' || #{keyword} || '%'
+			</if>
+		</where>
+		
+		<include refid="productOrderBy"></include>
+
+	</select>
+	
+	
+</mapper>

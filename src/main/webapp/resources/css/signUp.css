@@ -1,0 +1,85 @@
+@charset "UTF-8";
+* {
+	box-sizing: border-box;
+	tab-size: 4;
+	font-family:Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif!important;
+}
+h5{margin:0}
+input{margin-bottom: 10px;}
+#id,#pw,#name,#email_input,#addr_input2 {width: 100%; margin-bottom: 10px;}
+#jumin1, #jumin2{width:160px; margin-bottom: 10px;}
+#label1{font-size: 15px;}
+
+#signUp-box {
+	margin-top: 30px;
+	width: 400px;
+	height: 100%;
+	margin: 0 auto;
+	margin-top: 100px;
+	border: 1px solid black;
+	padding: 20px;
+}
+#signUp-header {
+	width:100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+.header-img {
+	width:200px;
+	height: 100px;
+	object-fit: cover;
+}
+#btn-box {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.signUp-btn {
+	width: 100%;
+	height: 30px;
+	margin-right: 10px;
+	background-color: rgb(255, 188, 0);
+	border:0;
+}
+.signUp-layout{
+    margin-top: 15%;
+}
+
+/* #mail_check_input_box_false{
+	background-color: #ebebe4;
+} */
+
+#mail_check_input_box_true{
+	background-color: white;
+}
+
+.email_check_input{
+	width: 50%;
+	height: 50%;
+	border:none;
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: lightgray;
+}
+.email_checkBtn{
+	border:1px solid black;
+	height: 30px;
+	width: 30%;
+}
+.incorrect {
+	color: red;
+	font-size: 14px;
+}
+.correct {
+	color: green;
+	font-size: 14px;
+}
+
+
+
+
+
+
+
+
