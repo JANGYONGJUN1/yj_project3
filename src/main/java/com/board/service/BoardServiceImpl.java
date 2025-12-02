@@ -37,4 +37,11 @@ public class BoardServiceImpl implements BoardService{
 		return pMapper.getSearchList(params);
 	}
 
+
+	@Override
+	public ProductVO productDetail(Integer productIdx) {
+		
+		return pMapper.getProductByIdx(productIdx);
+	}
+
 }

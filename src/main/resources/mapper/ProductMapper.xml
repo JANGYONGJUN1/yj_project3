@@ -4,16 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.mapper.ProductMapper">
 
-	<sql id="productOrderBy"> order by product_key ASC </sql>
-
-	<select id ="getProductAll" parameterType ="java.lang.Integer" resultType="com.board.vo.ProductVO">
+	<sql id="productOrderBy"> order by product_idx ASC </sql>
+	<sql id="selectProduct">
 		select 
-			product_key  as productKey,
+			product_idx  as productIdx,
 	        product_name as productName,
 	        content      as content,
 	        img1         as img1,
-	        views        as views
+	        img2 		 as img2,
+	        views        as views,
+	        price		 as price,
+	        cnt			 as cnt
 		from product
+	</sql>
+	<select id ="getProductAll" parameterType ="java.lang.Integer" resultType="com.board.vo.ProductVO">
+		<include refid="selectProduct"/>
 		<where>
 			<if test="category != null">
 				product_category = #{category}
@@ -22,14 +27,9 @@
 		<include refid="productOrderBy"></include>
 	</select>
 	
+	
 	<select id ="getSearchList" parameterType ="java.util.Map" resultType="com.board.vo.ProductVO">
-		select 
-			product_key  as productKey,
-	        product_name as productName,
-	        content      as content,
-	        img1         as img1,
-	        views        as views
-		from product
+		<include refid="selectProduct"/>
 		<where>
 			<if test="category != null">
 				product_category = #{category}
@@ -38,9 +38,12 @@
 				product_name like '%' || #{keyword} || '%'
 			</if>
 		</where>
-		
 		<include refid="productOrderBy"></include>
-
+	</select>
+	
+	<select id="getProductByIdx" parameterType="Integer" resultType="com.board.vo.ProductVO">
+		<include refid="selectProduct"/>
+		where product_idx = #{productIdx}
 	</select>
 	
 	

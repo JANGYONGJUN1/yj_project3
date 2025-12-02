@@ -15,6 +15,8 @@ public interface ProductMapper {
 	//검색 상품
 	public ArrayList<ProductVO> getSearchList(Map<String, Object> params);
 	
+	//상품 상세
+	public ProductVO getProductByIdx(@Param("productIdx") Integer productIdx);
 	
 	
 }

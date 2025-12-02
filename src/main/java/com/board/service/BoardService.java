@@ -12,5 +12,8 @@ public interface BoardService {
 	
 	// 검색 상품
 	ArrayList<ProductVO> productSearchList(Map<String, Object> params);
+	
+	// 상품 상세
+	ProductVO productDetail(Integer productIdx);
 
 }
