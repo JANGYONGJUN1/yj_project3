@@ -6,5 +6,7 @@ import com.board.vo.MemberVO;
 public interface MemberService {
 	
 	public void signUp(MemberVO mVO);
+	
+	public MemberVO signIn(String memberId, String password);
 
 }

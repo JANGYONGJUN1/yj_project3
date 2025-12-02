@@ -135,14 +135,14 @@
 	
 	<div class="d-flex align-items-center justify-content-center min-vh-100 bg-body-tertiary">	
 		<main class="form-signin w-100 m-auto">
-			<form>
+			<form action="${pageContext.request.contextPath}/signIn" method="post">
 				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 				<div class="form-floating">
-					<input type="text" class="form-control" id="floatingInput"> 
+					<input type="text" class="form-control" id="floatingInput" name ="memberId" required> 
 					<label for="floatingInput">아이디</label>
 				</div>
 				<div class="form-floating">
-					<input type="password" class="form-control" id="floatingPassword"> 
+					<input type="password" class="form-control" id="floatingPassword" name="password" required> 
 					<label for="floatingPassword">비밀번호</label>
 				</div>
 				<div class="form-check text-start my-3">

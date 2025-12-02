@@ -9,4 +9,12 @@
 		values(#{memberId}, #{password}, #{email}, #{name},  sysdate, 2, 10000)
 	</insert>
 	
+	<select id="findById" parameterType="String" resultType="com.board.vo.MemberVO">
+	
+		select 
+			memberId, password, email, name
+		from users
+		where memberId = #{memberId}	
+	</select>
+	
 </mapper>
