@@ -29,7 +29,7 @@
 					<div class="col-sm-8 col-md-7 py-4" >
 						<h4>About</h4>
 						<p class="text-body-secondary">
-							옷 다있소ver.2
+							옷 다있소ver.1
 						</p>
 					</div>
 					<div class="col-sm-4 offset-md-1 py-4">
