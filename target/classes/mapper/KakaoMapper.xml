@@ -10,7 +10,7 @@
 		where kakao_id = #{kakao_id}
 	</select>
 
-	<insert id="save" parameterType="com.board.vo.KakaoDTO" useGeneratedKeys="true" keyProperty="k_number">
+	<insert id="save" parameterType="com.board.vo.KakaoDTO" useGeneratedKeys="true" keyProperty="kakao_number">
 		INSERT INTO KAKAO_TABLE 
 		(
             kakao_id, 

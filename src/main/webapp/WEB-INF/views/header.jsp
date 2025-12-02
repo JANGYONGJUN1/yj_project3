@@ -13,7 +13,7 @@
 		window.location.href = "${pageContext.request.contextPath}/"
 	}
 	function signIn() {
-		window.location.href = "${pageContext.request.contextPath}/signInPage"
+		window.location.href = "${pageContext.request.contextPath}/signInPage" 
 	}
 	function signUp() {
 		window.location.href = "${pageContext.request.contextPath}/signUpPage"
@@ -42,15 +42,26 @@
 									<li class="right-tab"><a href="#" class="text-white" onclick="signUp()">회원가입</a></li>
 								</c:when>
 								
-								<%-- 로그인 된 상태 --%>
+								<%-- 로그인 상태  SessionUserDTO 사용 --%>
 								<c:otherwise>
 									<li class ="right-tab text-white" >
-										${sessionScope.loginUser.kakaoName}님 환영합니다.
+										${sessionScope.loginUser.loginName}님 환영합니다.
 									</li>
 									<li class ="right-tab">
-										<form action="/kakaoLogout" method="POST" >
-										    <button type="submit" style="display:inline; background:none;">카카오 로그아웃</button>
-										</form>
+										<c:choose>
+											<%-- 카카오 로그인 상태 --%>
+											<c:when test="${sessionScope.loginUser.loginType eq 'KAKAO'}">
+												<form action="/kakaoLogout" method="POST" >
+												    <button type="submit" style="display:inline; background:none;">카카오 로그아웃</button>
+												</form>
+											</c:when>
+											<%-- 일반 로그인 상태 --%>
+											<c:otherwise>
+													<form action="/logout" method="POST" >
+													    <button type="submit" style="display:inline; background:none;">로그아웃</button>
+													</form>
+											</c:otherwise>
+										</c:choose>
 									</li>
 								</c:otherwise>
 							</c:choose>

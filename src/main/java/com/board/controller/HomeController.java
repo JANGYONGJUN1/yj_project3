@@ -18,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ import com.board.service.KakaoService;
 import com.board.service.MemberService;
 import com.board.vo.MemberVO;
 import com.board.vo.ProductVO;
+import com.board.vo.SessionUserDTO;
 
 @Controller
 public class HomeController {
@@ -106,13 +108,48 @@ public class HomeController {
 		
 	};
 	
+	// 로그인 페이지 이동
 	@RequestMapping(value = "/signInPage", method = RequestMethod.GET)
-	public String signInPage(Locale locale, Model model) {
+	public String signInPage() {
 		System.out.println(" >>>>   로그인페이지 진입");
 		
 		return "signInPage";
 	}
 	
+	// 로그인
+	@PostMapping(value = "/signIn")
+	public String signIn(String memberId, String password, HttpSession session) {
+		System.out.println("로그인 컨트롤러 진입 ");
+		
+		MemberVO member = memberService.signIn(memberId, password);
+		
+		if(member != null) {
+			
+			SessionUserDTO loginUser = new SessionUserDTO();
+			
+			//jsp에 표시할 이름
+			loginUser.setLoginName(member.getName());
+			loginUser.setUserId(member.getMemberId());
+			// 일반로그인 타입 설정
+			loginUser.setLoginType("GENERAL");
+			
+			session.setAttribute("loginUser", loginUser);
+			System.out.println("로그인 세션 진입");
+			
+			return "redirect:/";
+		}
+		
+		return "signInPage";
+	}
+	
+	//로그아웃
+	@PostMapping(value= "/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/signInPage";
+	}
 	
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.GET)
 	public String kakaoLogin(Locale locale) {
