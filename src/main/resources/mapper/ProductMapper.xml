@@ -58,5 +58,10 @@
 		
 	</select>
 	
+	<select id="getCountReview" parameterType="int" resultType="int">
+		select count(*)
+		from product_reviews
+		where product_idx = ${productIdx}
+	</select>
 	
 </mapper>

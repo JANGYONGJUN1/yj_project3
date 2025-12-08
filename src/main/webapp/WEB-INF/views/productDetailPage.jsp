@@ -32,18 +32,18 @@
                 <span class="discount-rate">30% 할인</span>
             </div>
             <div class="product-rating">
-                ⭐️⭐️⭐️⭐️ (123 리뷰)
+                ⭐️⭐️⭐️⭐️ (${countReview} 리뷰)
             </div>
             <p class="product-short-desc">${product.content}</p>
 
             <div class="product-options">
-                <div class="option-group">
+              <!--   <div class="option-group">
                     <label for="color-select">색상:</label>
                     <select id="color-select">
                         <option value="black">블랙</option>
                         <option value="white">화이트</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="option-group">
                     <label for="size-select">사이즈:</label>
                     <select id="size-select">
@@ -69,7 +69,7 @@
 			<h2>상품 상세 정보</h2>
 			<div class="description-tabs">
 				<button class="tab-btn active">상품 설명</button>
-				<button class="tab-btn">리뷰 (123)</button>
+				<button class="tab-btn">리뷰 (${countReview} )</button>
 				<button class="tab-btn">배송/교환/반품</button>
 			</div>
 			<div class="tab-content active">

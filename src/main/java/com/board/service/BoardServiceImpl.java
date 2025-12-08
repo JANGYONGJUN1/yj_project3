@@ -51,4 +51,10 @@ public class BoardServiceImpl implements BoardService{
 		return pMapper.getReview(productIdx);
 	}
 
+
+	@Override
+	public int getCountReview(Integer productIdx) {
+		return pMapper.getCountReview(productIdx);
+	}
+
 }

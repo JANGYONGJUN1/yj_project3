@@ -55,7 +55,13 @@
 		inner join users u on u.memberid = pr.user_id
 		inner join product p on p.product_idx = pr.product_idx
 		where pr.product_idx = #{productIdx}
+		
 	</select>
 	
+	<select id="getCountReview" parameterType="int" resultType="int">
+		select count(*)
+		from product_reviews
+		where product_idx = ${productIdx}
+	</select>
 	
 </mapper>

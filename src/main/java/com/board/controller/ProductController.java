@@ -31,9 +31,11 @@ public class ProductController {
 		
 		ProductVO product = productService.productDetail(productIdx);
 		ArrayList<ReviewsVO> review = productService.getReview(productIdx);
+		int getCountReview = productService.getCountReview(productIdx);
 		
 		model.addAttribute("product", product);
 		model.addAttribute("reviewList", review);
+		model.addAttribute("countReview", getCountReview);
 		
 		System.out.println(">>>>>>>> reviewList: " + review);
 		

@@ -18,4 +18,6 @@ public interface BoardService {
 	ProductVO productDetail(Integer productIdx);
 	
 	ArrayList<ReviewsVO> getReview(Integer productIdx);
+	
+	int getCountReview(Integer productIdx);
 }

@@ -21,4 +21,6 @@ public interface ProductMapper {
 	
 	public ArrayList<ReviewsVO> getReview(@Param("productIdx") Integer productIdx);
 	
+	public int getCountReview(@Param("productIdx")Integer productIdx);
+	
 }
