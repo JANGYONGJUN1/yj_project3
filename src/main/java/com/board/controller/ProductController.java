@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.service.BoardService;
 import com.board.vo.ProductVO;
+import com.board.vo.ReviewsVO;
 
 
 @Controller
@@ -26,9 +27,15 @@ public class ProductController {
 	@RequestMapping(value="/productDetail")
 	public String detail(Model model, @RequestParam("productIdx") int productIdx) {
 		
+		System.out.println("상품 디테일 컨트롤러 진입 ------------------");
+		
 		ProductVO product = productService.productDetail(productIdx);
+		ArrayList<ReviewsVO> review = productService.getReview(productIdx);
 		
 		model.addAttribute("product", product);
+		model.addAttribute("reviewList", review);
+		
+		System.out.println(">>>>>>>> reviewList: " + review);
 		
 		System.out.println("상품 상세 조회 ID: " + productIdx);
 		

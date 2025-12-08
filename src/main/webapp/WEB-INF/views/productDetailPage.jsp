@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,10 @@
     <div class="product-detail-container">
         <div class="product-image-gallery">
             <div class="main-image">
-                <img src=${product.img1 } alt="상품 메인 이미지">
+                <img src="${product.img1 }" alt="상품 메인 이미지">
             </div>
             <div class="thumbnail-images">
-                <img src=${product.img2 } alt="썸네일 1">
+                <img src= "${product.img2 }" alt="썸네일 1">
                 </div>
         </div>
 
@@ -63,44 +64,47 @@
             </div>
         </div>
     </div>
-	
-	<div class="product-full-description">
-        <h2>상품 상세 정보</h2>
-        <div class="description-tabs">
-            <button class="tab-btn active">상품 설명</button>
-            <button class="tab-btn">리뷰 (123)</button>
-            <button class="tab-btn">Q&A (12)</button>
-            <button class="tab-btn">배송/교환/반품</button>
-        </div>
-        
-        <div class="tab-content active">
-            <img src="path/to/detail_image1.jpg" alt="상세 설명 1">
-            <p>이 상품은 뛰어난 착용감과 내구성을 자랑합니다. 데일리룩에 완벽하게 어울립니다.</p>
-            <img src="path/to/detail_image2.jpg" alt="상세 설명 2">
-            <h3>소재 및 관리법</h3>
-            <ul>
-                <li>소재: 면 100%</li>
-                <li>세탁: 찬물 단독 손세탁</li>
-            </ul>
-        </div>
-		<div class="related-products-section">
-	        <h2>이런 상품은 어떠세요?</h2>
-	        <div class="product-carousel">
-	            <div class="related-product-card">
-	                <img src="path/to/related_prod1.jpg" alt="관련 상품 1">
-	                <h3>관련 상품 1</h3>
-	                <p>₩35,000</p>
-	            </div>
-	            <div class="related-product-card">
-	                <img src="path/to/related_prod2.jpg" alt="관련 상품 2">
-	                <h3>관련 상품 2</h3>
-	                <p>₩28,000</p>
-	            </div>
-	            </div>
-	    </div>
-	</div>
-</main>
-<jsp:include page="footer.jsp"></jsp:include>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+		<div class="product-full-description">
+			<h2>상품 상세 정보</h2>
+			<div class="description-tabs">
+				<button class="tab-btn active">상품 설명</button>
+				<button class="tab-btn">리뷰 (123)</button>
+				<button class="tab-btn">배송/교환/반품</button>
+			</div>
+			<div class="tab-content active">
+				<h4>이 상품은 뛰어난 착용감과 내구성을 자랑합니다. 데일리룩에 완벽하게 어울립니다.</h4>
+				<img src= "${product.img3 }" style="width:40%;" alt="상품 상세정보 이미지1">
+				<h3>소재 및 관리법</h3>
+				<img src= "${product.detailImg }"  style="width:80%;" alt="상품 상세정보 이미지2">
+			</div>
+			<div class="products-section">
+				<h4>리뷰</h4>
+				<div class="product-carousel">
+					<div class="related-product-card">
+						<select>
+							<option>최신순</option>
+							<option>평점 높은순</option>
+							<option>평점 낮은순</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="product-reviews">
+				<c:forEach var="review" items="${reviewList}">
+					<div >
+						<span>${review.userId }</span> <br/>
+						★ <span>${review.score }</span>
+						| <span><fmt:formatDate value="${review.regdate}" pattern="yyyy-MM-dd"/></span>
+					</div>
+					<div style="background-color: lightgrey; border-radius: 10px; width:500px; height: 100px;">
+						<span>${review.content }</span>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</main>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

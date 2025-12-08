@@ -182,12 +182,31 @@
         padding: 0; /* 불필요한 패딩 제거 */
     }
     
-    .product-full-description,
-    .related-products-section {
-        padding: 0 15px; /* 모바일 맞춤 여백 */
+    .product-full-description{
+		padding: 0 15px; /* 모바일 맞춤 여백 */	
+		max-width: 100%;
     }
     
     .product-name {
         font-size: 24px;
     }
+    
+    .tab-content active{
+    	max-width: 80%;
+    }
+    
+}
+
+ .products-section {
+        padding: 0 15px; /* 모바일 맞춤 여백 */
+        display: flex;
+	    justify-content: space-between;
+	    max-width: 80%;
+	    margin-bottom: 20px;
+    }
+.product-reviews {
+	justify-content: space-between;
+    display: flex;
+    max-width: 80%;
+	
 }

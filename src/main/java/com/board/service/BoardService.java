@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.board.vo.ProductVO;
+import com.board.vo.ReviewsVO;
 
 public interface BoardService {
 	
@@ -15,5 +16,6 @@ public interface BoardService {
 	
 	// 상품 상세
 	ProductVO productDetail(Integer productIdx);
-
+	
+	ArrayList<ReviewsVO> getReview(Integer productIdx);
 }

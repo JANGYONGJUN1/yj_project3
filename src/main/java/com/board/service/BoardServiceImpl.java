@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.board.mapper.ProductMapper;
 import com.board.vo.ProductVO;
+import com.board.vo.ReviewsVO;
 
 
 @Service
@@ -42,6 +43,12 @@ public class BoardServiceImpl implements BoardService{
 	public ProductVO productDetail(Integer productIdx) {
 		
 		return pMapper.getProductByIdx(productIdx);
+	}
+
+
+	@Override
+	public ArrayList<ReviewsVO> getReview(Integer productIdx) {
+		return pMapper.getReview(productIdx);
 	}
 
 }

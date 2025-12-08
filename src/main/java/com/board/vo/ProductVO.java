@@ -23,4 +23,6 @@ public class ProductVO {
 	
 	private int cnt;
 	
+	private String detailImg;
+	
 }

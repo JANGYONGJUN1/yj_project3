@@ -12,9 +12,11 @@
 	        content      as content,
 	        img1         as img1,
 	        img2 		 as img2,
+	        img3 		 as img3,
 	        views        as views,
 	        price		 as price,
-	        cnt			 as cnt
+	        cnt			 as cnt,
+	        detail_img as detailImg
 		from product
 	</sql>
 	<select id ="getProductAll" parameterType ="java.lang.Integer" resultType="com.board.vo.ProductVO">
@@ -44,6 +46,15 @@
 	<select id="getProductByIdx" parameterType="Integer" resultType="com.board.vo.ProductVO">
 		<include refid="selectProduct"/>
 		where product_idx = #{productIdx}
+	</select>
+	
+	<select id="getReview" parameterType="Integer" resultType="com.board.vo.ReviewsVO">
+		select pr.user_id, pr.score, pr.regdate, pr.product_idx, pr.review_idx, pr.content
+		from product_reviews pr
+		left outer join kakao_table kt on kt.kakao_number = pr.kakao_number
+		inner join users u on u.memberid = pr.user_id
+		inner join product p on p.product_idx = pr.product_idx
+		where pr.product_idx = #{productIdx}
 	</select>
 	
 	

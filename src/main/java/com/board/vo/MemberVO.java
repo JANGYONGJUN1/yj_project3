@@ -1,8 +1,8 @@
 package com.board.vo;
 
+import java.sql.Date;
+
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class MemberVO {
@@ -20,7 +20,7 @@ public class MemberVO {
 	private String email;
 
 	// 가입날짜
-	private int regdate;
+	private Date regdate;
 
 	// 관리자 여부 (1: 관리자, 2: 일반)
 	private int adminCk;

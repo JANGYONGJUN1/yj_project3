@@ -5,14 +5,14 @@
 <mapper namespace="com.board.mapper.MemberMapper">
 
 	<insert id="memberJoin" parameterType ="MemberVO">
-		insert into USERS (MEMBERID, PASSWORD, EMAIL, NAME, REGDATE, ADMINCK, POINT) 
-		values(#{memberId}, #{password}, #{email}, #{name},  sysdate, 2, 10000)
+		insert into USERS (MEMBERID, PASSWORD, EMAIL, NAME, REGDATE, ADMINCK, POINT, USER_IDX) 
+		values(#{memberId}, #{password}, #{email}, #{name},  sysdate, 2, 10000, USER_IDX_SEQ.NEXTVAL)
 	</insert>
 	
 	<select id="findById" parameterType="String" resultType="com.board.vo.MemberVO">
 	
 		select 
-			memberId, password, email, name
+			memberId, password, email, name, adminck, point, user_idx, regdate
 		from users
 		where memberId = #{memberId}	
 	</select>
