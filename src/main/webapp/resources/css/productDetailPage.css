@@ -143,6 +143,12 @@
     display: flex;
     border-bottom: 2px solid #eee;
     margin-bottom: 30px;
+    
+    border-radius: 10px;
+    background: lavender;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .tab-btn {
@@ -205,8 +211,24 @@
 	    margin-bottom: 20px;
     }
 .product-reviews {
-	justify-content: space-between;
-    display: flex;
     max-width: 80%;
-	
+    align-items: center;
 }
+.review-box {
+	background-color: lightgrey; 
+	border-radius: 10px; 
+	width:500px; 
+	height: 100px; 
+	display: flex; 
+	align-items: center;
+	padding: 20px;
+}
+.review-layout {
+	display: flex;
+	justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+
+

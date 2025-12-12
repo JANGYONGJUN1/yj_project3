@@ -47,8 +47,8 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public ArrayList<ReviewsVO> getReview(Integer productIdx) {
-		return pMapper.getReview(productIdx);
+	public ArrayList<ReviewsVO> getReview(Integer productIdx, String sortType) {
+		return pMapper.getReview(productIdx, sortType);
 	}
 
 

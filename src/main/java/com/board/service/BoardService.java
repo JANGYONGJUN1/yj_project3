@@ -17,7 +17,7 @@ public interface BoardService {
 	// 상품 상세
 	ProductVO productDetail(Integer productIdx);
 	
-	ArrayList<ReviewsVO> getReview(Integer productIdx);
+	ArrayList<ReviewsVO> getReview(Integer productIdx, String sortType);
 	
 	int getCountReview(Integer productIdx);
 }
