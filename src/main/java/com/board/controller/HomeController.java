@@ -130,6 +130,7 @@ public class HomeController {
 			//jsp에 표시할 이름
 			loginUser.setLoginName(member.getName());
 			loginUser.setUserId(member.getMemberId());
+			loginUser.setUserIdx(member.getUserIdx());
 			// 일반로그인 타입 설정
 			loginUser.setLoginType("GENERAL");
 			

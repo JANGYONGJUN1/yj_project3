@@ -27,10 +27,11 @@
 <script>
 window.addEventListener('DOMContentLoaded', function(){
 	var detailBtn = document.querySelectorAll('.detail-btn');
+	var addBtn = document.querySelectorAll('.add-btn');
 	
 	detailBtn.forEach(detailBtn => {
 		detailBtn.addEventListener('click', function(event){
-			var productIdx = this.getAttribute('data-product-id');
+			var productIdx = this.getAttribute('data-product-idx');
 			
 			if(productIdx){
 				alert("상품 idx: " + productIdx)
@@ -41,6 +42,53 @@ window.addEventListener('DOMContentLoaded', function(){
 		});
 	});
 	
+	addBtn.forEach(addBtn => {
+		addBtn.addEventListener('click', function(event){
+			var productIdx = this.getAttribute('data-product-idx');
+			var quantity = 1; //기본 설정
+			
+			if(productIdx) {
+				const formData = new URLSearchParams();
+				formData.append('productIdx', productIdx);
+				formData.append('quantity', quantity);
+				
+				fetch ('${pageContext.request.contextPath}/product/saveCart', {
+                    method: 'POST',
+                    body: formData
+                })
+                // 💡 1. 응답을 JSON으로 파싱합니다.
+                .then(response => {
+                    if (!response.ok) {
+                        // 통신 자체 실패 (4xx, 5xx 에러)
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                // 💡 2. 서버에서 보낸 JSON 데이터를 처리합니다.
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("장바구니에 상품을 담았습니다.");
+                    } else if (data.status === 'required_login') {
+                        alert("여기 >> 로그인이 필요합니다.");
+                    } else {
+                        // status: error 인 경우
+                        alert("장바구니 담기 실패: " + data.message);
+                    }
+                    
+                    // 💡 3. JSON에 담긴 URL로 페이지 이동
+                    if (data.redirectUrl) {
+                        window.location.href = data.redirectUrl; 
+                    }
+                })
+                .catch(error => {
+                	console.error('Fetch error:', error);
+                	alert("장바구니 담기 중 통신 오류 또는 실패.");
+                });
+			} else {
+				alert("상품 id를 찾을 수 없습니다.");
+			}
+		});
+	});
 }); // windows.addEventListener의 닫는 중괄호
 </script>
 </head>
@@ -84,10 +132,10 @@ window.addEventListener('DOMContentLoaded', function(){
 									<p class="card-text"> ${item.content} </p>
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-outline-secondary detail-btn"  data-product-id="${item.productIdx}">상세보기</button>
+											<button type="button" class="btn btn-sm btn-outline-secondary detail-btn"  data-product-idx="${item.productIdx}">상세보기</button>
 											<c:choose>
 												<c:when  test="${not empty sessionScope.loginUser }">
-												<button type="button" class="btn btn-sm btn-outline-secondary">장바구니 담기</button>
+												<button type="button" class="btn btn-sm btn-outline-secondary add-btn"  data-product-idx = '${item.productIdx }'>장바구니 담기</button>
 												</c:when>
 											</c:choose>
 										</div>

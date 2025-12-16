@@ -28,4 +28,5 @@ public class MemberVO {
 	// 회원 포인트
 	private int point;
 
+	public int userIdx;
 }

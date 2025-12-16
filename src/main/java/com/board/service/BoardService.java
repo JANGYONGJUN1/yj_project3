@@ -1,8 +1,10 @@
 package com.board.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import com.board.vo.ProductCartListVO;
 import com.board.vo.ProductVO;
 import com.board.vo.ReviewsVO;
 
@@ -20,4 +22,12 @@ public interface BoardService {
 	ArrayList<ReviewsVO> getReview(Integer productIdx, String sortType);
 	
 	int getCountReview(Integer productIdx);
+
+	ArrayList<ProductCartListVO> productCartList(Integer userIdx);
+	
+	void saveCart(int userIdx, int productIdx, int quantity);
+	
+	void deleteCartItem(int cartIdx, int userIdx);
+	
+	void deleteSelectedCartItem(int userIdx, List<Integer> cartIdxList);
 }

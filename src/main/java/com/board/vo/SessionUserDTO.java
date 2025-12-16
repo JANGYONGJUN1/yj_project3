@@ -12,4 +12,6 @@ public class SessionUserDTO {
 	
 	// 로그인 타입 구분 (필수)
     private String loginType; // "GENERAL" 또는 "KAKAO"
+    
+    private int userIdx;
 }

@@ -1,11 +1,14 @@
 package com.board.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.board.mapper.ProductMapper;
+import com.board.vo.ProductCartListVO;
 import com.board.vo.ProductVO;
 import com.board.vo.ReviewsVO;
 
@@ -31,7 +34,6 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 
-
 	@Override
 	public ArrayList<ProductVO> productSearchList(Map<String, Object> params) {
 		
@@ -55,6 +57,34 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int getCountReview(Integer productIdx) {
 		return pMapper.getCountReview(productIdx);
+	}
+	
+	@Override
+	public ArrayList<ProductCartListVO> productCartList(Integer userIdx) {
+		
+		return pMapper.getCartList(userIdx);
+	}
+	
+	public void saveCart(int userIdx, int productIdx, int quantity) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("userIdx", userIdx);
+		params.put("productIdx", productIdx);
+		params.put("quantity", quantity);
+		
+		pMapper.saveCart(params);
+	}
+
+	@Override
+	public void deleteCartItem(int cartIdx, int userIdx) {
+		
+		pMapper.deleteCartItem(cartIdx, userIdx);
+	}
+
+
+	@Override
+	public void deleteSelectedCartItem(int userIdx, List<Integer> cartIdxList) {
+
+		pMapper.deleteSelectedCartItem(userIdx, cartIdxList);
 	}
 
 }

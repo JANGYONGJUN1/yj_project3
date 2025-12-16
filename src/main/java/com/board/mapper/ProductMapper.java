@@ -1,10 +1,12 @@
 package com.board.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.board.vo.ProductCartListVO;
 import com.board.vo.ProductVO;
 import com.board.vo.ReviewsVO;
 
@@ -23,4 +25,11 @@ public interface ProductMapper {
 	
 	public int getCountReview(@Param("productIdx")Integer productIdx);
 	
+	public ArrayList<ProductCartListVO> getCartList(@Param("userIdx") Integer userIdx);
+
+	public void saveCart(Map<String, Object> params);
+	
+	public void deleteCartItem(@Param("cartIdx") Integer cartIdx, @Param("userIdx") Integer userIdx);
+	
+	public void deleteSelectedCartItem(@Param("userIdx") Integer userIdx, @Param("cartIdxList") List<Integer> cartIdxList);
 }

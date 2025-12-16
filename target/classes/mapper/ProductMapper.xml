@@ -75,4 +75,48 @@
 		where product_idx = ${productIdx}
 	</select>
 	
+	<select id="getCartList" parameterType="int" resultType ="com.board.vo.ProductCartListVO">
+		select p.img1, p.product_name, p.product_idx, pcl.quantity, p.price, pcl.cart_idx
+		from product_cart_list pcl
+		inner join product p on p.product_idx = pcl.product_idx
+		inner join users u on u.user_idx = pcl.user_idx
+		where pcl.user_idx = #{userIdx}
+	</select>
+		 
+	<insert id="saveCart" parameterType="java.util.Map">
+		insert into product_cart_list (
+			cart_idx,
+			user_idx,
+			product_idx,
+			quantity,
+			regdate
+		)
+		values(
+			PRODUCT_CARTIDX.nextval, 
+			#{userIdx}, #{productIdx}, 
+			#{quantity}, 
+			sysdate
+		)
+	</insert>
+	
+	<delete id="deleteCartItem" parameterType="int">
+		delete
+		from product_cart_list
+		where cart_idx = #{cartIdx}
+		and user_idx = #{userIdx}
+	</delete>
+	
+	<delete id="deleteSelectedCartItem">
+		delete
+		from product_cart_list
+		where user_idx = #{userIdx}
+		and cart_idx in 
+		<foreach collection="cartIdxList" item="cartIdx" open="(" separator="," close=")">
+	        #{cartIdx}
+	    </foreach>
+	</delete>
+	
+	
+	
+	
 </mapper>
